@@ -1,23 +1,23 @@
 package org.example;
 
 public class Word {
-    private string name;
-    private string meaning;
+    private String name;
+    private String meaning;
 
 
-    public string getName() {
+    public String getName() {
         return name;
     }
 
-    public string getMeaning() {
+    public String getMeaning() {
         return meaning;
     }
 
-    public void setName(string name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setMeaning(string meaning) {
+    public void setMeaning(String meaning) {
         this.meaning = meaning;
     }
 }
