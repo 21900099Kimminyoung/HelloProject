@@ -1,10 +1,11 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class WordManager {
-    public void start(){
-        System.out.println("hello!!");
-    }
-    public void seletMenu(){
+    WordCRUD wordCRUD;
+    Scanner sc = new Scanner(System.in);
+    public int seletMenu(){
         System.out.print("*** 영단어 마스터 ***\n"
 +"********************\n"
         +"1. 모든 단어 보기\n"
@@ -16,6 +17,23 @@ public class WordManager {
         +"7. 파일 저장\n"
         +"0. 나가기\n"
                 +"********************\n"
-        +"=> 원하는 메뉴는?");
+        +"=> 원하는 메뉴는? ");
+        return sc.nextInt();
+    }
+    WordManager(){
+        wordCRUD = new WordCRUD(sc);
+    }
+    public void start(){
+        while (true) {
+            int menu = seletMenu();
+            if(menu==0) break;
+            if(menu==4){
+                //add
+                wordCRUD.addWord();
+            }
+            else if(menu==1){
+                //print list
+            }
+        }
     }
 }
