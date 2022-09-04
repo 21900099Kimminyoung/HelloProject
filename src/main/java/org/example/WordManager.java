@@ -33,6 +33,7 @@ public class WordManager {
             }
             else if(menu==1){
                 //print list
+                wordCRUD.listAll();
             }
         }
     }
