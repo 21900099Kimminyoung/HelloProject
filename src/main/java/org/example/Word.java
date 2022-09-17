@@ -56,6 +56,9 @@ public class Word {
         String str = String.format("%-3s",slevel)+String.format("%15s  ",word)+meaning;
         return str;
     }
+    public String toFileString(){
+        return this.level+"|"+this.word+"|"+this.meaning;
+    }
 }
 //가장 먼저 데이터 구조 만들기 , 안쓰는 변수  = 디폴트
 //단어 관리
