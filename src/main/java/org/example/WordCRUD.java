@@ -1,11 +1,16 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WordCRUD implements ICRUD{
     ArrayList <Word> list;
     Scanner s;
+    static final String fname = "Dictionary.txt";
     WordCRUD(Scanner s){
         list = new ArrayList<>();
         this.s = s;
@@ -28,6 +33,7 @@ public class WordCRUD implements ICRUD{
 
     @Override
     public int update(Object obj) {
+
         return 0;
     }
 
@@ -48,5 +54,76 @@ public class WordCRUD implements ICRUD{
             System.out.println(list.get(i).toString());
         }
         System.out.println("--------------------------------");
+    }
+    public ArrayList<Integer> listAll(String Keyword){
+        System.out.println("--------------------------------");
+        ArrayList<Integer> idlist = new ArrayList<>();
+        int j=0;
+        for(int i = 0; i<list.size();i++){
+            String word = list.get(i).getWord();
+            if(!word.contains(Keyword)) continue;
+            System.out.print(j+1+" ");
+            System.out.println(list.get(i).toString());
+            idlist.add(i);
+            j++;
+        }
+        System.out.println("--------------------------------");
+        return idlist;
+    }
+    public void updateltem() {
+        String Keyword;
+        System.out.print("=> 수정할 단어 검색 : ");
+        Keyword = s.next();
+        ArrayList<Integer>idlist = this.listAll(Keyword);
+        System.out.print("=> 수정할 번호 선택 : ");
+        int id = s.nextInt();
+        String end = s.nextLine();
+        System.out.print("=> 뜻 입력 : ");
+        String meaning = s.nextLine();
+        Word word = list.get(idlist.get(id-1));
+        word.setMeaning(meaning);
+        System.out.println("단어가 수정되었습니다.");
+
+    }
+
+    public void deleteltem() {
+
+        String Keyword;
+        System.out.print("=> 삭제할 단어 검색 : ");
+        Keyword = s.next();
+        ArrayList<Integer>idlist = this.listAll(Keyword);
+        System.out.print("=> 삭제할 번호 선택 : ");
+        int id = s.nextInt();
+        String end = s.nextLine();
+        System.out.print("=> 정말로 삭제하실래요?(Y/n) ");
+        String ans = s.next();
+        if(ans.equalsIgnoreCase("y")) {
+            list.remove((int)idlist.get(id-1));
+            System.out.println("=> 단어가 삭제되었습니다. ");
+        }
+        else System.out.println("=> 취소되었습니다.");
+    }
+
+    public void loadFile(){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fname));
+            String line;
+            int count = 0;
+            while (true) {
+                line = br.readLine();
+                if(line==null) break;
+
+                String data[] = line.split("\\|");
+                int level = Integer.parseInt(data[0]);
+                String word = data[1];
+                String meaning = data[2];
+                list.add(new Word(0, level, word,meaning));
+                count++;
+            }
+            br.close();
+            System.out.println("==>"+count+"개 로딩 완료!!!");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

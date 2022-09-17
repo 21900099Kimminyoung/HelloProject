@@ -24,6 +24,7 @@ public class WordManager {
         wordCRUD = new WordCRUD(sc);
     }
     public void start(){
+        wordCRUD.loadFile();
         while (true) {
             int menu = seletMenu();
             if(menu==0) {
@@ -33,6 +34,12 @@ public class WordManager {
             if(menu==4){
                 //add
                 wordCRUD.addWord();
+            }
+            if(menu==5){
+                wordCRUD.updateltem();
+            }
+            if(menu==6){
+                wordCRUD.deleteltem();
             }
             else if(menu==1){
                 //print list
