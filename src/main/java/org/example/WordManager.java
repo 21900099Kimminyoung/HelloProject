@@ -35,12 +35,6 @@ public class WordManager {
                 //add
                 wordCRUD.addWord();
             }
-            else if(menu==5){
-                wordCRUD.updateltem();
-            }
-            else if(menu==6){
-                wordCRUD.deleteltem();
-            }
             else if(menu==1){
                 //print list
                 wordCRUD.listAll();
@@ -51,10 +45,15 @@ public class WordManager {
             else if(menu==3) {
                 wordCRUD.searchWord();
             }
+            else if(menu==5){
+                wordCRUD.updateltem();
+            }
+            else if(menu==6){
+                wordCRUD.deleteltem();
+            }
             else if(menu==7) {
                 wordCRUD.saveFile();
             }
-
         }
     }
 }
