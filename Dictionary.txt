@@ -1,3 +1,4 @@
 1|name|이름, 이름
 2|pole|기둥, 장대
 3|formerly|이전에, 예전에
+1| apple|사과
