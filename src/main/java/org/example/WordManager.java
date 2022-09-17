@@ -35,16 +35,20 @@ public class WordManager {
                 //add
                 wordCRUD.addWord();
             }
-            if(menu==5){
+            else if(menu==5){
                 wordCRUD.updateltem();
             }
-            if(menu==6){
+            else if(menu==6){
                 wordCRUD.deleteltem();
             }
             else if(menu==1){
                 //print list
                 wordCRUD.listAll();
             }
+            else if(menu==7) {
+                wordCRUD.saveFile();
+            }
+
         }
     }
 }
